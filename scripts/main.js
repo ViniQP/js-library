@@ -82,11 +82,24 @@ function createBookDiv(bookTitle, bookAuthor, bookPages, bookRead, bookIndex) {
   read.className = "book[read]"
   read.innerText = `Status: ${bookRead}`
 
+  const toggleReadBtn = document.createElement("button")
+  toggleReadBtn.innerHTML = "Change Status"
+  toggleReadBtn.onclick = () => {
+    const book = myLibrary[bookIndex]
+    console.log(book)
+    if (book.read === "Read") {
+      book.read = "Not Read"
+    } else {
+      book.read = "Read"
+    }
+    read.innerText = `Status: ${book.read}`
+  }
+
   const deleteBookBtn = document.createElement("button")
   deleteBookBtn.className = "card-dlt-btn"
   deleteBookBtn.innerHTML = "Delete Book"
   deleteBookBtn.value = bookIndex
-  deleteBookBtn.onclick = function deleteBook() {
+  deleteBookBtn.onclick = () => {
     const book = deleteBookBtn.parentElement
     const idInput = book.value
 
@@ -98,5 +111,6 @@ function createBookDiv(bookTitle, bookAuthor, bookPages, bookRead, bookIndex) {
   bookDiv.appendChild(author)
   bookDiv.appendChild(pages)
   bookDiv.appendChild(read)
+  bookDiv.appendChild(toggleReadBtn)
   bookDiv.appendChild(deleteBookBtn)
 }
