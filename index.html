@@ -1,37 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <script src="main.js" defer></script>
+  <script src="./scripts/main.js" defer></script>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <form action="">
-    <div>
-      <label for="title">Title</label>
-      <input type="text" name="title" id="book-title">
-    </div>
-    <div>
-      <label for="author">Author</label>
-      <input type="text" name="author" id="book-author">
-    </div>
-    <div>
-      <label for="pages">Pages</label>
-      <input type="text" name="pages" id="book-pages">
-    </div>
-    <div>
-      <label for="read"></label>
-      <select name="read" id="book-read">
-        <option value="Read">Read</option>
-        <option value="Not Read">Not Read</option>
-      </select>
-    </div>
-    <input type="submit" value="Submit" id="submit-book">
-  </form>
-  <div id="books">
-    <h1>Books</h1>
+  <div class="book-form">
+    <h1>Add a Book</h1>
+    <form action="">
+      <div class="book-input">
+        <label for="title" class="input-label">Title</label>
+        <input type="text" name="title" id="book-title">
+      </div>
+
+      <div class="book-input">
+        <label for="author" class="input-label">Author</label>
+        <input type="text" name="author" id="book-author">
+      </div>
+      <div class="book-input">
+        <label for="pages" class="input-label">Pages</label>
+        <input type="text" name="pages" id="book-pages" class="book-input">
+      </div>
+      <div class="book-input">
+        <label for="read" class="input-label">Was the book read?</label>
+        <select name="read" id="book-read">
+          <option value="Read">Yes</option>
+          <option value="Not Read">No</option>
+        </select>
+      </div>
+      <input type="submit" value="Submit" id="submit-book">
+    </form>
   </div>
+
+  <div class="book-sector">
+    <h1>Books</h1>
+    <div id="books">
+      <div class="book">
+        <p class="book[title]">Title: sdsada</p>
+        <p class="book[author]">Author: sdsad</p>
+        <p class="book[pages]">Pages: sadasd</p>
+        <p class="book[read]">Status: Read</p>
+      </div>
+    </div>
+
+  </div>
+
 </body>
+
 </html>

@@ -1,10 +1,12 @@
 let myLibrary = [];
+let deleteBtns = document.querySelectorAll(".card-dlt-btn")
 
 function Book(title, author, pages, read) {
   this.title = title
   this.author = author
   this.pages = pages
   this.read = read
+  this.shown = false
 }
 Book.prototype.info = function() {
   return (`${this.title} by ${this.author}, ${this.pages}, ${this.read}`)
@@ -37,8 +39,7 @@ function newBook() {
 
 }
 function createBook(bookName, bookAuthor, bookPages, bookRead) {
-  let count = myLibrary.length
-  myLibrary[count] = new Book(bookName, bookAuthor, bookPages, bookRead)
+  myLibrary.push(new Book(bookName, bookAuthor, bookPages, bookRead))
 }
 
 // handle form submit
@@ -50,17 +51,15 @@ submitBtn = document.getElementById('submit-book')
 submitBtn.addEventListener('click', submitClick, false)
 
 function showBooks() {
-  myLibrary.forEach((book) => {
-    title = book.title
-    author = book.author
-    pages = book.pages
-    read = book.read
-
-    createBook(title, author, pages, read)
+  myLibrary.forEach((book, index) => {
+  if (book.shown === false) {
+    createBookDiv(book.title, book.author, book.pages, book.read, index)
+    book.shown = true
+  }
   })
 }
 
-function createBook(bookTitle, bookAuthor, bookPages, bookRead) {
+function createBookDiv(bookTitle, bookAuthor, bookPages, bookRead, bookIndex) {
   const mainDiv = document.getElementById("books")
   const bookDiv = document.createElement("div")
   bookDiv.className = "book"
@@ -68,23 +67,36 @@ function createBook(bookTitle, bookAuthor, bookPages, bookRead) {
 
   const title = document.createElement("p")
   title.className = "book[title]"
-  title.innerText = bookTitle
+  title.innerText = `Title: ${bookTitle}`
 
   const author = document.createElement("p")
-  author.className = "book[title]"
-  author.innerText = bookAuthor
+  author.className = "book[author]"
+  author.innerText = `Author: ${bookAuthor}`
 
   const pages = document.createElement("p")
-  pages.className = "book[title]"
-  pages.innerText = bookPages
+  pages.className = "book[pages]"
+  pages.innerText = `Pages: ${bookPages}`
 
 
   const read = document.createElement("p")
-  read.className = "book[title]"
-  read.innerText = bookRead
+  read.className = "book[read]"
+  read.innerText = `Status: ${bookRead}`
+
+  const deleteBookBtn = document.createElement("button")
+  deleteBookBtn.className = "card-dlt-btn"
+  deleteBookBtn.innerHTML = "Delete Book"
+  deleteBookBtn.value = bookIndex
+  deleteBookBtn.onclick = function deleteBook() {
+    const book = deleteBookBtn.parentElement
+    const idInput = book.value
+
+    myLibrary.splice(idInput, 1)
+    book.remove()
+  }
 
   bookDiv.appendChild(title)
   bookDiv.appendChild(author)
   bookDiv.appendChild(pages)
   bookDiv.appendChild(read)
+  bookDiv.appendChild(deleteBookBtn)
 }
