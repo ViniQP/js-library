@@ -5,6 +5,7 @@
 
 body {
   display: flex;
+  flex-direction: row-reverse;
 
   margin: 0;
   padding: 0;
@@ -24,11 +25,19 @@ body {
 
 }
 
+#form-sector {
+  visibility: hidden;
+}
+
 .book-form form {
   display: flex;
   flex-direction: column;
   gap: 5px;
 
+
+}
+
+.new-book-form {
 
 }
 
@@ -53,6 +62,7 @@ input[type=submit] {
   align-items: center;
 
   width: 70vw;
+  gap: 20px;
 }
 
 #books {
@@ -72,6 +82,7 @@ input[type=submit] {
   gap: 30px;
 
   padding-left: 25px;
+  border: 5px solid black;
 
   color: white;
   background-color: var(--book-card-color);

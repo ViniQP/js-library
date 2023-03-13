@@ -1,6 +1,20 @@
 let myLibrary = [];
 let deleteBtns = document.querySelectorAll(".card-dlt-btn")
 
+function showForm() {
+  formDiv = document.getElementById("form-sector")
+  formDiv.style.visibility = "visible"
+}
+function hideForm() {
+  formDiv = document.getElementById("form-sector")
+  formDiv.style.visibility = "hidden"
+}
+addBookBtn = document.getElementById("book-adder")
+addBookBtn.addEventListener("click", () => {
+  showForm()
+})
+
+// book object constructor
 function Book(title, author, pages, read) {
   this.title = title
   this.author = author
@@ -11,8 +25,6 @@ function Book(title, author, pages, read) {
 Book.prototype.info = function() {
   return (`${this.title} by ${this.author}, ${this.pages}, ${this.read}`)
 }
-const theHobbit = new Book("The Hobbit", "J.R.R", "295 pages", "not read yet")
-console.log(theHobbit.info())
 
 function clearForm() {
   document.getElementById("book-title").value = ""
@@ -30,6 +42,7 @@ function newBook() {
   
   if (bookName && bookAuthor && bookPages && bookRead) {
     createBook(bookName, bookAuthor, bookPages, bookRead)
+    hideForm()
     clearForm()
     showBooks()
     return true
